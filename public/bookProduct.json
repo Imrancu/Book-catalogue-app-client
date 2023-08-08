@@ -1,0 +1,91 @@
+{
+  "books": [
+    {
+      "Title": "Book 1 Title",
+      "Img_URL": "http://exprostudio.com/html/book_library/images/books/img-01.jpg",
+      "Author": "Douglas Adams",
+      "Author": "Author 1",
+      "Genre": "Fantasy",
+      "Publication_Date": "2022-01-15",
+      "Reviews": ["Great book! Highly recommended.", "Couldn't put it down."]
+    },
+    {
+      "Title": "Book 2 Title",
+      "Img_URL": "http://exprostudio.com/html/book_library/images/books/img-02.jpg",
+      "Author": "Author 2",
+      "Genre": "Mystery",
+      "Publication_Date": "2021-11-30",
+      "Reviews": ["A thrilling read!", "Twists and turns kept me engaged."]
+    },
+    {
+      "Title": "Book 3 Title",
+      "Img_URL": "http://exprostudio.com/html/book_library/images/books/img-03.jpg",
+      "Author": "Author 3",
+      "Genre": "Science Fiction",
+      "Publication_Date": "2023-03-22",
+      "Reviews": ["Fascinating concept.", "Unique and imaginative."]
+    },
+    {
+      "Title": "Book 4 Title",
+      "Img_URL": "http://exprostudio.com/html/book_library/images/books/img-04.jpg",
+      "Author": "Author 4",
+      "Genre": "Romance",
+      "Publication_Date": "2020-07-10",
+      "Reviews": ["Heartwarming story.", "Perfect for a cozy evening."]
+    },
+    {
+      "Title": "Book 5 Title",
+      "Img_URL": "http://exprostudio.com/html/book_library/images/books/img-05.jpg",
+      "Author": "Author 5",
+      "Genre": "Thriller",
+      "Publication_Date": "2023-05-05",
+      "Reviews": ["Kept me on the edge of my seat!", "Unpredictable twists."]
+    },
+    {
+      "Title": "Book 6 Title",
+      "Img_URL": "http://exprostudio.com/html/book_library/images/books/img-06.jpg",
+      "Author": "Author 6",
+      "Genre": "Historical Fiction",
+      "Publication_Date": "2022-09-18",
+      "Reviews": [
+        "Transported me to another era.",
+        "Well-researched and captivating."
+      ]
+    },
+    {
+      "Title": "Book 7 Title",
+      "Img_URL": "http://exprostudio.com/html/book_library/images/books/img-07.jpg",
+      "Author": "Author 7",
+      "Genre": "Dystopian",
+      "Publication_Date": "2021-03-05",
+      "Reviews": ["Thought-provoking and unsettling.", "A cautionary tale."]
+    },
+    {
+      "Title": "Book 8 Title",
+      "Img_URL": "http://exprostudio.com/html/book_library/images/books/img-08.jpg",
+      "Author": "Author 8",
+      "Genre": "Humor",
+      "Publication_Date": "2023-01-07",
+      "Reviews": ["Laugh-out-loud funny!", "Clever and witty."]
+    },
+    {
+      "Title": "Book 9 Title",
+      "Img_URL": "http://exprostudio.com/html/book_library/images/books/img-09.jpg",
+      "Author": "Author 9",
+      "Genre": "Biography",
+      "Publication_Date": "2022-11-22",
+      "Reviews": ["Inspiring life story.", "Well-written and engaging."]
+    },
+    {
+      "Title": "Book 10 Title",
+      "Img_URL": "http://exprostudio.com/html/book_library/images/books/img-12.jpg",
+      "Author": "Author 10",
+      "Genre": "Young Adult",
+      "Publication_Date": "2023-06-12",
+      "Reviews": [
+        "Perfect for teenagers and adults alike.",
+        "Touches on important themes."
+      ]
+    }
+  ]
+}

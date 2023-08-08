@@ -92,7 +92,7 @@ const Login = () => {
             </div>
             <div className="px-10 mt-3">
               <p className="text-left">
-                Don't have an account?{" "}
+                Don't have an account?
                 <button
                   onClick={() => setToggleSignup(!toggleSignup)}
                   className="text-primary font-bold"

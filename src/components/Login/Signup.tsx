@@ -80,6 +80,7 @@ const Signup = ({ setToggleSignup, toggleSignup }) => {
           <p className="text-left">
             I have an account{" "}
             <button
+              // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-call
               onClick={() => setToggleSignup(!toggleSignup)}
               className="text-primary font-bold"
             >

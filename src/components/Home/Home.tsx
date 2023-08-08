@@ -1,8 +1,9 @@
 import React from "react";
 import HeroSection from "./HeroSection";
-import BookCard from "./BookCard";
 import LatestNews from "./LatestNews";
 import PopularAuthors from "./PopularAuthors";
+import ReelsBooks from "./ReelsBooks";
+import BookCatalog from "./BookCatalog";
 
 const Home = () => {
   return (
@@ -10,6 +11,10 @@ const Home = () => {
       <HeroSection></HeroSection>
       {/* <BookCard></BookCard> */}
       <div className="px-10 lg:my-20">
+        <BookCatalog></BookCatalog>
+        <div className="my-10">
+          <ReelsBooks></ReelsBooks>
+        </div>
         <PopularAuthors></PopularAuthors>
         <LatestNews></LatestNews>
       </div>
