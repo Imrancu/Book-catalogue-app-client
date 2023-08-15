@@ -7,7 +7,18 @@
       "Author": "Author 1",
       "Genre": "Fantasy",
       "Publication_Date": "2022-01-15",
-      "Reviews": ["Great book! Highly recommended.", "Couldn't put it down."]
+      "Reviews": [
+        {
+          "user": "User1",
+          "rating": 5,
+          "comment": "Excellent book!"
+        },
+        {
+          "user": "User2",
+          "rating": 4,
+          "comment": "Enjoyable read."
+        }
+      ]
     },
     {
       "Title": "Book 2 Title",
@@ -15,7 +26,18 @@
       "Author": "Author 2",
       "Genre": "Mystery",
       "Publication_Date": "2021-11-30",
-      "Reviews": ["A thrilling read!", "Twists and turns kept me engaged."]
+      "Reviews": [
+        {
+          "user": "User1",
+          "rating": 5,
+          "comment": "Excellent book!"
+        },
+        {
+          "user": "User2",
+          "rating": 4,
+          "comment": "Enjoyable read."
+        }
+      ]
     },
     {
       "Title": "Book 3 Title",
@@ -23,7 +45,18 @@
       "Author": "Author 3",
       "Genre": "Science Fiction",
       "Publication_Date": "2023-03-22",
-      "Reviews": ["Fascinating concept.", "Unique and imaginative."]
+      "Reviews": [
+        {
+          "user": "User1",
+          "rating": 5,
+          "comment": "Excellent book!"
+        },
+        {
+          "user": "User2",
+          "rating": 4,
+          "comment": "Enjoyable read."
+        }
+      ]
     },
     {
       "Title": "Book 4 Title",
@@ -31,7 +64,18 @@
       "Author": "Author 4",
       "Genre": "Romance",
       "Publication_Date": "2020-07-10",
-      "Reviews": ["Heartwarming story.", "Perfect for a cozy evening."]
+      "Reviews": [
+        {
+          "user": "User1",
+          "rating": 5,
+          "comment": "Excellent book!"
+        },
+        {
+          "user": "User2",
+          "rating": 4,
+          "comment": "Enjoyable read."
+        }
+      ]
     },
     {
       "Title": "Book 5 Title",
@@ -39,7 +83,18 @@
       "Author": "Author 5",
       "Genre": "Thriller",
       "Publication_Date": "2023-05-05",
-      "Reviews": ["Kept me on the edge of my seat!", "Unpredictable twists."]
+      "Reviews": [
+        {
+          "user": "User1",
+          "rating": 5,
+          "comment": "Excellent book!"
+        },
+        {
+          "user": "User2",
+          "rating": 4,
+          "comment": "Enjoyable read."
+        }
+      ]
     },
     {
       "Title": "Book 6 Title",
@@ -48,8 +103,16 @@
       "Genre": "Historical Fiction",
       "Publication_Date": "2022-09-18",
       "Reviews": [
-        "Transported me to another era.",
-        "Well-researched and captivating."
+        {
+          "user": "User1",
+          "rating": 5,
+          "comment": "Excellent book!"
+        },
+        {
+          "user": "User2",
+          "rating": 4,
+          "comment": "Enjoyable read."
+        }
       ]
     },
     {
@@ -58,7 +121,18 @@
       "Author": "Author 7",
       "Genre": "Dystopian",
       "Publication_Date": "2021-03-05",
-      "Reviews": ["Thought-provoking and unsettling.", "A cautionary tale."]
+      "Reviews": [
+        {
+          "user": "User1",
+          "rating": 5,
+          "comment": "Excellent book!"
+        },
+        {
+          "user": "User2",
+          "rating": 4,
+          "comment": "Enjoyable read."
+        }
+      ]
     },
     {
       "Title": "Book 8 Title",
@@ -66,7 +140,18 @@
       "Author": "Author 8",
       "Genre": "Humor",
       "Publication_Date": "2023-01-07",
-      "Reviews": ["Laugh-out-loud funny!", "Clever and witty."]
+      "Reviews": [
+        {
+          "user": "User1",
+          "rating": 5,
+          "comment": "Excellent book!"
+        },
+        {
+          "user": "User2",
+          "rating": 4,
+          "comment": "Enjoyable read."
+        }
+      ]
     },
     {
       "Title": "Book 9 Title",
@@ -74,7 +159,18 @@
       "Author": "Author 9",
       "Genre": "Biography",
       "Publication_Date": "2022-11-22",
-      "Reviews": ["Inspiring life story.", "Well-written and engaging."]
+      "Reviews": [
+        {
+          "user": "User1",
+          "rating": 5,
+          "comment": "Excellent book!"
+        },
+        {
+          "user": "User2",
+          "rating": 4,
+          "comment": "Enjoyable read."
+        }
+      ]
     },
     {
       "Title": "Book 10 Title",
@@ -83,8 +179,16 @@
       "Genre": "Young Adult",
       "Publication_Date": "2023-06-12",
       "Reviews": [
-        "Perfect for teenagers and adults alike.",
-        "Touches on important themes."
+        {
+          "user": "User1",
+          "rating": 5,
+          "comment": "Excellent book!"
+        },
+        {
+          "user": "User2",
+          "rating": 4,
+          "comment": "Enjoyable read."
+        }
       ]
     }
   ]
