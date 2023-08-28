@@ -9,11 +9,16 @@ import NotFound from "./components/NotFound/NotFound";
 import Signup from "./components/Login/Signup";
 import AllBook from "./components/AllBook/AllBook";
 import BookDetails from "./components/Home/BookDetails";
+
+import { Toaster } from "react-hot-toast";
+import AddBook from "./components/AddBook/AddBook";
+import EditBook from "./components/AddBook/EditBook";
+import RequireAuth from "./components/Login/RequierAuth";
 // ..
 AOS.init();
 function App() {
   return (
-    <>
+    <div>
       <Navbar></Navbar>
       <Routes>
         <Route path="/" element={<Home />}></Route>
@@ -26,10 +31,22 @@ function App() {
         ></Route>
         <Route path="/all-book" element={<AllBook />}></Route>
         <Route path="/single-book/:id" element={<BookDetails />}></Route>
+        <Route
+          path="/addBook"
+          element={
+            <RequireAuth>
+              <AddBook></AddBook>
+            </RequireAuth>
+          }
+        ></Route>
+        <Route path="/editBook" element={<EditBook></EditBook>}></Route>
         <Route path="*" element={<NotFound />}></Route>
       </Routes>
+
       <Footer></Footer>
-    </>
+      <Toaster />
+      {/* <ToastContainer /> */}
+    </div>
   );
 }
 

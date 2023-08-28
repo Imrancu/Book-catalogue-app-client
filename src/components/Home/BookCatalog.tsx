@@ -28,7 +28,7 @@ const BookCatalog = () => {
       </h1>
 
       <div className="lg:grid grid-cols-5 space-x-5 space-y-10">
-        {books?.map((book: any): any => {
+        {books?.slice(0, 10)?.map((book: any): any => {
           return <Book book={book}></Book>;
         })}
       </div>

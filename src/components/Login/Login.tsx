@@ -1,37 +1,48 @@
+/* eslint-disable @typescript-eslint/no-misused-promises */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { SubmitHandler, useForm } from "react-hook-form";
 import Signup from "./Signup";
+import { useLoginUserMutation } from "../../redux/features/Book/apiBookSlice";
+import { toast } from "react-hot-toast";
+interface IFormInputs {
+  email: string;
+  password: string;
+}
 
 const Login = () => {
   const [toggleSignup, setToggleSignup] = useState(false);
-  const navigate = useNavigate();
-  // const [signInWithEmailAndPassword, user, loading, error] =
-  //   useSignInWithEmailAndPassword(auth);
-  // const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
-  // const {
-  //   register,
-  //   handleSubmit,
-  //   watch,
-  //   reset,
-  //   formState: { errors },
-  // } = useForm();
-  // const onSubmit = (data) => {
-  //   const { email, password, displayName } = data;
-  //   signInWithEmailAndPassword(email, password);
-  //   console.log(data);
-  //   reset();
-  // };
-  // const handleGoogle = () => {
-  //   signInWithGoogle();
-  // };
-  // if (user || gUser) {
-  //   navigate("/");
-  // }
-  // const [token] = useHook(user || gUser);
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+  const from = location.state?.from?.pathname || "/";
+  // console.log(from);
 
-  // if (loading) {
-  //   return <Loaders></Loaders>;
-  // }
+  const navigate = useNavigate();
+  const [loginUser, { isLoading, isError, isSuccess }] = useLoginUserMutation();
+
+  const onSubmit: SubmitHandler<IFormInputs> = async (data) => {
+    const response = await loginUser(data);
+    if (response.data) {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+      const message = await response?.data?.message;
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+      toast.success(message);
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+      const token: string = await response?.data?.data?.accessToken;
+      localStorage.setItem("accessToken", token);
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+      return navigate(from, { replace: true });
+    } else {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+      toast.error("Please submit your currect Email or password");
+      navigate("/login");
+    }
+  };
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm<IFormInputs>();
 
   return (
     <section>
@@ -42,35 +53,36 @@ const Login = () => {
         >
           <div className="w-96 py-10 border border-primary rounded-xl shadow-2xl">
             <h1 className="text-center text-4xl font-bold ">Login</h1>
-            <form>
+
+            <form onSubmit={handleSubmit(onSubmit)}>
               <div className="text-center px-10">
                 <p className="text-left font-semibold">Email</p>
                 <input
-                  // {...register("email", { required: true })}
+                  {...register("email", { required: true })}
                   className="w-full px-2 rounded-xl h-12 border border-black"
                   type="email"
                   id=""
                   name="email"
                 />
-                {/* {errors?.message && (
+                {errors && (
                   <p role="alert" className="text-red-500">
-                    {errors?.message}
+                    {errors.root?.message}
                   </p>
-                )} */}
+                )}
               </div>
               <div className="text-center  px-10 my-4">
                 <p className="text-left font-semibold">Password</p>
                 <input
-                  // {...register("password", { required: true })}
+                  {...register("password", { required: true })}
                   className="w-full rounded-xl h-12 border px-2 border-black"
                   type="password"
                   name="password"
                 />
-                {/* {errors?.message && (
+                {errors && (
                   <p role="alert" className="text-red-500">
-                    {errors?.message}
+                    {errors.root?.message}
                   </p>
-                )} */}
+                )}
               </div>
               <div className=" px-10">
                 <button
@@ -94,6 +106,7 @@ const Login = () => {
               <p className="text-left">
                 Don't have an account?
                 <button
+                  // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-call
                   onClick={() => setToggleSignup(!toggleSignup)}
                   className="text-primary font-bold"
                 >
@@ -106,7 +119,9 @@ const Login = () => {
       )}
       {toggleSignup && (
         <Signup
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
           setToggleSignup={setToggleSignup}
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
           toggleSignup={toggleSignup}
         ></Signup>
       )}

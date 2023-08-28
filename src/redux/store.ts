@@ -1,14 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { apiBookSlice } from "./features/Book/apiBookSlice";
+import { apiBookAndUserSlice } from "./features/Book/apiBookSlice";
 
 const store = configureStore({
   reducer: {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
-    [apiBookSlice.reducerPath]: apiBookSlice.reducer,
+    [apiBookAndUserSlice.reducerPath]: apiBookAndUserSlice.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-    getDefaultMiddleware().concat(apiBookSlice.middleware),
+    getDefaultMiddleware().concat(apiBookAndUserSlice.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

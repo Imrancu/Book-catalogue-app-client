@@ -1,11 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 // import "../../App.css";
 import { RxCross2 } from "react-icons/rx";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const { pathname } = useLocation();
+  const navigate = useNavigate();
   const [mobileNavbarToggle, setMobileNavbarToggle] = useState(false);
+
+  const accessTokenGet = localStorage.getItem("accessToken");
+
+  const logOut = () => {
+    const token = localStorage.removeItem("accessToken");
+    navigate("/login");
+    return token;
+  };
+
   return (
     <header className="relative">
       <div className="flex justify-between  backdrop-blur-sm static top-0 glass items-center shadow-lg lg:h-12 h-10 w-full lg:px-10 px-5 lg:py-10 py-7 text-stone-900 bg-white">
@@ -53,13 +63,13 @@ const Navbar = () => {
             </li>
             <li
               className={
-                pathname === "/about"
+                pathname === "/addBook"
                   ? "text-primary font-bold border-b-2 border-primary"
                   : " font-semibold hover:text-primary hover:border-b-2 hover:border-primary"
               }
             >
-              <Link to="/" key={pathname}>
-                ABOUT
+              <Link to="/addBook" key={pathname}>
+                ADD BOOK
               </Link>
             </li>
             <li
@@ -78,9 +88,15 @@ const Navbar = () => {
         <section>
           <ul className="flex justify-center items-center">
             <li className="lg:font-bold hidden lg:block font-semibold">
-              <Link to="/login" key={pathname}>
-                LOGIN
-              </Link>
+              {accessTokenGet && accessTokenGet ? (
+                <button onClick={() => logOut()} key={pathname}>
+                  LOG OUT
+                </button>
+              ) : (
+                <Link to="/login" key={pathname}>
+                  LOGIN
+                </Link>
+              )}
             </li>
             <li className="lg:font-bold lg:hidden ml-1 font-semibold ">
               <button
@@ -124,8 +140,8 @@ const Navbar = () => {
               </Link>
             </li>
             <li className="font-semibold">
-              <Link to="/" key={pathname}>
-                ABOUT
+              <Link to="/addBook" key={pathname}>
+                ADD BOOK
               </Link>
             </li>
             <li className="font-semibold">
