@@ -65,10 +65,8 @@ const AllBook = () => {
     filteredBooks === undefined || filteredBooks.length === 0
       ? books
       : filteredBooks;
-  // console.log(mapBooks);
 
   const books2: [] = data2?.data?.data?.books;
-  // console.log(books);
 
   if (isLoading) {
     return (

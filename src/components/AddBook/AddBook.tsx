@@ -1,5 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useCreateBookMutation } from "../../redux/features/Book/apiBookSlice";
+import { toast } from "react-hot-toast";
 
 interface IFormInputs {
   Title: string;
@@ -12,6 +14,7 @@ interface IFormInputs {
 const AddBook = () => {
   const {
     register,
+    reset,
     formState: { errors },
     handleSubmit,
   } = useForm<IFormInputs>();
@@ -23,7 +26,10 @@ const AddBook = () => {
     const token = localStorage.getItem("accessToken");
     if (token) {
       const respons = await createBook(data);
-      console.log(respons);
+      if (respons?.data?.success === true) {
+        toast.success("successfully added your book");
+        reset();
+      }
     }
   };
   return (
@@ -96,16 +102,6 @@ const AddBook = () => {
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           />
         </div>
-        {/* <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">
-            Reviews
-          </label>
-          <textarea
-            {...register("Reviews", { required: true })}
-            name="Reviews"
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          />
-        </div> */}
         <div className="flex items-center justify-center">
           <button
             type="submit"

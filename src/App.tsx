@@ -14,6 +14,8 @@ import { Toaster } from "react-hot-toast";
 import AddBook from "./components/AddBook/AddBook";
 import EditBook from "./components/AddBook/EditBook";
 import RequireAuth from "./components/Login/RequierAuth";
+import Wishlist from "./components/WishList/Wishlist";
+import ReadingList from "./components/ReadingLis/ReadingList";
 // ..
 AOS.init();
 function App() {
@@ -30,6 +32,8 @@ function App() {
           }
         ></Route>
         <Route path="/all-book" element={<AllBook />}></Route>
+        <Route path="/wishlist" element={<Wishlist />}></Route>
+        <Route path="/readinglist" element={<ReadingList />}></Route>
         <Route path="/single-book/:id" element={<BookDetails />}></Route>
         <Route
           path="/addBook"
@@ -39,7 +43,14 @@ function App() {
             </RequireAuth>
           }
         ></Route>
-        <Route path="/editBook" element={<EditBook></EditBook>}></Route>
+        <Route
+          path="/editBook/:id"
+          element={
+            <RequireAuth>
+              <EditBook></EditBook>
+            </RequireAuth>
+          }
+        ></Route>
         <Route path="*" element={<NotFound />}></Route>
       </Routes>
 

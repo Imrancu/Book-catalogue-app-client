@@ -8,7 +8,10 @@ import { useGetBooksQuery } from "../../redux/features/Book/apiBookSlice";
 const BookCatalog = () => {
   const navigate = useNavigate();
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unused-vars
-  const { data, isLoading, error } = useGetBooksQuery(undefined);
+  const { data, isLoading, error } = useGetBooksQuery(undefined, {
+    refetchOnMountOrArgChange: true,
+    pollingInterval: 3000,
+  });
 
   // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
   const books: [] = data?.data?.books;

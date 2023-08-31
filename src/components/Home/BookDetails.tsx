@@ -1,17 +1,25 @@
+/* eslint-disable @typescript-eslint/no-misused-promises */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-unsafe-return */
 /* eslint-disable @typescript-eslint/await-thenable */
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { Await, useNavigate, useParams } from "react-router-dom";
 import {
+  useCreateBookReadinglistMutation,
   useCreateBookReviewMutation,
+  useCreateBookWishlistMutation,
+  useDeleteBookMutation,
   useGetBooksReviewsQuery,
   useGetSingleBooksQuery,
 } from "../../redux/features/Book/apiBookSlice";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import BookReview from "./BookReview";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { useDispatch } from "react-redux";
+import { BsBook, BsBookFill, BsHeartFill, BsSuitHeart } from "react-icons/bs";
 interface IFormInputs {
   comment: string;
   rating: number;
@@ -21,37 +29,30 @@ interface IFormInputs {
 const BookDetails = () => {
   const navigate = useNavigate();
   const { id } = useParams();
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unused-vars
-  const singleData = useGetSingleBooksQuery(id);
-  const [singleDataState, setSingleDataState] = useState(singleData);
-  useEffect(() => {
-    setSingleDataState(singleDataState);
-  }, [singleDataState]);
-  const loading: boolean = singleData?.isLoading;
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-  const data = singleDataState?.data?.data?.singlebook;
-  if (loading) {
-    return (
-      <h1 className="text-center text-error text-2xl font-bold">Loading...</h1>
-    );
-  }
 
+  const singleData = useGetSingleBooksQuery(id);
+  useEffect(() => {
+    singleData;
+  }, [singleData]);
+
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+  const data = singleData?.data?.data?.singlebook;
   // // review data
   const bookId: string = data?._id;
-  const allReview = useGetBooksReviewsQuery(bookId);
-  const reviewData = allReview?.data?.data?.result;
-  const [reviewState, setReviewState] = useState(reviewData);
+  // console.log(bookId);
+  const allReview = useGetBooksReviewsQuery(bookId, {
+    refetchOnMountOrArgChange: true,
+    pollingInterval: 3000,
+  });
   useEffect(() => {
-    setReviewState(reviewState);
-  }, [reviewState]);
-  if (allReview?.isLoading) {
-    return (
-      <h1 className="text-center text-error text-2xl font-bold">Loading...</h1>
-    );
-  }
+    allReview;
+  }, [allReview]);
+  // console.log(allReview);
 
-  // const [createBookReview, { isLoading, isError, isSuccess }] =
-  //   useCreateBookReviewMutation();
+  const reviewData = allReview?.data?.data?.result;
+
+  const [createBookReview, { isLoading, isError, isSuccess }] =
+    useCreateBookReviewMutation();
 
   const {
     register,
@@ -66,9 +67,6 @@ const BookDetails = () => {
       navigate("/login");
       return toast.success("Please Login,You Are Not User");
     } else {
-      if (isLoading) {
-        return toast.loading("loading...");
-      }
       const { rating, comment } = data2;
       const newData = {
         rating,
@@ -82,17 +80,80 @@ const BookDetails = () => {
       return reset();
     }
   };
+  const [deleteBook] = useDeleteBookMutation();
+  const handleDeleteBooks = async (bookId: string) => {
+    const token = localStorage.getItem("accessToken");
+    if (!token) {
+      toast.error("You are not Right for deleting this book");
+      return navigate("/login");
+    } else if (token) {
+      const respons = await deleteBook(bookId);
+      if (respons?.data?.success === true) {
+        navigate("/");
+      }
+    }
+  };
+
+  const [createBookWishlist] = useCreateBookWishlistMutation();
+  const [createBookReadinglist] = useCreateBookReadinglistMutation();
+
+  const allData = {
+    BookId: bookId,
+    Status: "Reading",
+  };
+
+  const handleWishList = async (data: any) => {
+    const token = localStorage.getItem("accessToken");
+    if (!token) {
+      toast.error("Please login");
+      return navigate("/login");
+    } else {
+      const response = await createBookWishlist(data);
+      console.log(response);
+      if (response?.data?.success === true) {
+        toast.success("Added The Book in The Wishlist");
+        navigate("/wishlist");
+      } else if (!response?.data?.success === true) {
+        toast.error("Somthing Went Wrong,Please login again");
+      }
+    }
+  };
+  const handleReadingList = async (data: any) => {
+    const token = localStorage.getItem("accessToken");
+
+    if (!token) {
+      toast.error("Please login");
+      return navigate("/login");
+    } else {
+      const response = await createBookReadinglist(data);
+      console.log(response);
+      if (response?.data?.success === true) {
+        toast.success("Added The Book in The Readinglist");
+        navigate("/readinglist");
+      } else if (!response?.data?.success === true) {
+        toast.error("Somthing went wrong,please login again");
+      }
+    }
+  };
 
   return (
     <div className=" p-20">
       <div className="flex justify-center items-center  lg:mb-10">
         <div className="lg:grid grid-cols-2 space-x-4 space-y-4">
-          <section>
+          <section className="">
             <img
               className="lg:w-64 h-auto p-3 shadow-2xl"
               src={data?.Img_URL && data?.Img_URL}
               alt=""
             />
+            <div className="flex justify-between px-10 rounded-lg shadow-2xl bg-white py-2 ">
+              <button onClick={() => handleWishList(allData)}>
+                <BsSuitHeart className="text-2xl shadow-xl ml-[-20px] text-primary"></BsSuitHeart>
+              </button>
+              <button onClick={() => handleReadingList(allData)}>
+                <BsBook className="text-2xl text-primary mr-[10px]"></BsBook>
+              </button>
+            </div>
           </section>
           <section className="text-center ">
             <h1 className="lg:text-3xl font-semibold font-serif mt-4">
@@ -110,12 +171,15 @@ const BookDetails = () => {
             </h4>
             <div className="flex lg:justify-evenly justify-between mt-4">
               <button
-                onClick={() => navigate("/editBook")}
+                onClick={() => navigate(`/editBook/${bookId}`)}
                 className="btn lg:btn-sm btn-xs btn-primary text-white"
               >
                 Edit Books
               </button>
-              <button className="btn text-white lg:btn-sm btn-xs btn-error">
+              <button
+                onClick={() => handleDeleteBooks(bookId)}
+                className="btn text-white lg:btn-sm btn-xs btn-error"
+              >
                 Delete Books
               </button>
             </div>
@@ -141,7 +205,7 @@ const BookDetails = () => {
             <tbody>
               {allReview?.isSuccess &&
                 // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-                reviewState?.map((reviw: any, index: number) => {
+                reviewData?.map((reviw: any, index: number) => {
                   return (
                     <tr className="hover">
                       <th>{index + 1}</th>
@@ -163,19 +227,19 @@ const BookDetails = () => {
           </h1>
           <form
             // eslint-disable-next-line @typescript-eslint/no-misused-promises, @typescript-eslint/no-unsafe-argument
-            // onSubmit={handleSubmit(onSubmit)}
+            onSubmit={handleSubmit(onSubmit)}
             className="border  border-primary p-5 rounded-xl"
           >
             <textarea
               placeholder="Write Your Comments"
-              // {...register("comment", { required: true })}
+              {...register("comment", { required: true })}
               required
               name="comment"
               className="textarea textarea-bordered textarea-lg w-full"
             ></textarea>
             <select
               className="select select-primary w-full my-4"
-              // {...register("rating", { required: true })}
+              {...register("rating", { required: true })}
               required
               name="rating"
             >

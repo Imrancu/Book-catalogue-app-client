@@ -1,13 +1,12 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const apiBookAndUserSlice = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000/api/v1" }),
-  refetchOnMountOrArgChange: 30,
+  // refetchOnMountOrArgChange: 30,
   endpoints: (builder) => ({
-    // global configuration for the api
-    // refetchOnMountOrArgChange: 30,
     createBook: builder.mutation({
       query: (bookData) => ({
         url: "/create-book/",
@@ -34,6 +33,18 @@ export const apiBookAndUserSlice = createApi({
     }),
     getSingleBooks: builder.query({
       query: (id) => `/book/${id}`,
+    }),
+
+    updateBook: builder.mutation({
+      query: ({ bookId, bookData }) => ({
+        url: `/book/${bookId}`,
+        method: "PATCH",
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          "Content-Type": "application/json", // Make sure to include the Content-Type header
+        },
+        body: bookData, // Include the data you want to update in the request body
+      }),
     }),
 
     //  user login and register
@@ -70,15 +81,114 @@ export const apiBookAndUserSlice = createApi({
     getBooksReviews: builder.query({
       query: (queryParams) => `/review/${queryParams}`,
     }),
+    // WishList and ReadingLis
+    createBookWishlist: builder.mutation({
+      query: (data) => ({
+        url: "/wishlist/",
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          authorization: `Berar ${localStorage.getItem("accessToken")}`,
+        },
+        body: data,
+      }),
+    }),
+    getBookWishlist: builder.query({
+      query: (queryParams) => ({
+        url: "/wishlist/",
+        headers: {
+          "content-type": "application/json",
+          authorization: `Berar ${localStorage.getItem("accessToken")}`,
+        },
+        params: queryParams,
+      }),
+    }),
+
+    deleteBookWishlist: builder.mutation({
+      query: (id) => ({
+        url: `/wishlist/${id}`,
+        method: "DELETE",
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          "Content-Type": "application/json", // Make sure to include the Content-Type header
+        },
+        // Include the data you want to update in the request body
+      }),
+    }),
+
+    createBookReadinglist: builder.mutation({
+      query: (data) => ({
+        url: "/readinglist/",
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          authorization: `Berar ${localStorage.getItem("accessToken")}`,
+        },
+        body: data,
+      }),
+    }),
+
+    getBookReadinglist: builder.query({
+      query: (queryParams) => ({
+        url: "/readinglist/",
+        headers: {
+          "content-type": "application/json",
+          authorization: `Berar ${localStorage.getItem("accessToken")}`,
+        },
+        params: queryParams,
+      }),
+    }),
+    readingBookUpdate: builder.mutation({
+      query: ({ id, Status }) => ({
+        url: `/readinglist/${id}`,
+        method: "PATCH",
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          "Content-Type": "application/json", // Make sure to include the Content-Type header
+        },
+        body: Status, // Include the data you want to update in the request body
+      }),
+    }),
+
+    deleteBookReading: builder.mutation({
+      query: (id) => ({
+        url: `/readinglist/${id}`,
+        method: "DELETE",
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          "Content-Type": "application/json", // Make sure to include the Content-Type header
+        },
+        // Include the data you want to update in the request body
+      }),
+    }),
+    deleteBook: builder.mutation({
+      query: (bookId) => ({
+        url: `/book/${bookId}`,
+        method: "DELETE",
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          "Content-Type": "application/json",
+        },
+      }),
+    }),
   }),
 });
 
 export const {
-  useGetBooksQuery,
+  useReadingBookUpdateMutation,
+  useGetBookReadinglistQuery,
+  useDeleteBookMutation,
+  useGetSingleBooksQuery,
   useGetBooksReviewsQuery,
   useCreateBookMutation,
-  useGetSingleBooksQuery,
   useCreateUserMutation,
-  useCreateBookReviewMutation,
   useLoginUserMutation,
+  useGetBooksQuery,
+  useUpdateBookMutation,
+  useGetBookWishlistQuery,
+  useCreateBookReviewMutation,
+  useDeleteBookWishlistMutation,
+  useDeleteBookReadingMutation,
+  useCreateBookWishlistMutation,
+  useCreateBookReadinglistMutation,
 } = apiBookAndUserSlice;
