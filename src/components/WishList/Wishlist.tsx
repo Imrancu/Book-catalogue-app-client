@@ -15,7 +15,6 @@ import {
 import { toast } from "react-hot-toast";
 
 const Wishlist = () => {
-  const [hovered, setHovered] = useState(false);
   const getBookWishlist = useGetBookWishlistQuery(undefined, {
     refetchOnMountOrArgChange: true,
     pollingInterval: 3000,
