@@ -27,10 +27,10 @@ const Login = () => {
     const response: any = await loginUser(data);
     if (response?.data) {
       const message = await response?.data?.message;
-      toast.success(message);
       const token: string = await response?.data?.data?.accessToken;
       localStorage.setItem("accessToken", token);
-      return navigate("/");
+      navigate("/");
+      toast.success(message);
     } else {
       toast.error("Please submit your currect Email or password");
       navigate("/login");
