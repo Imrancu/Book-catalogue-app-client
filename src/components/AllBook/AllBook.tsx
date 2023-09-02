@@ -4,10 +4,10 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
-import { useEffect, useState } from "react";
-import { BsFilterSquare, BsArrowRightCircleFill } from "react-icons/bs";
-import Book from "../Home/Book";
+import { useState } from "react";
+import { BsArrowRightCircleFill, BsFilterSquare } from "react-icons/bs";
 import { useGetBooksQuery } from "../../redux/features/Book/apiBookSlice";
+import Book from "../Home/Book";
 
 const AllBook = () => {
   const [queryParams, setQueryParams] = useState({
@@ -38,14 +38,14 @@ const AllBook = () => {
   };
 
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unused-vars
-  const { data, isLoading, error } = useGetBooksQuery(queryParams);
+  const { data, isLoading } = useGetBooksQuery(queryParams);
   const data2 = useGetBooksQuery(undefined);
 
   // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-assignment
   const books: [] = data?.data?.books;
   // console.log(books);
 
-  const [searchQuery, setSearchQuery] = useState("");
+  const [, setSearchQuery] = useState("");
   const [filteredBooks, setFilteredBooks] = useState(books);
 
   const handleSearch = (e: { target: { value: string } }) => {
@@ -144,7 +144,7 @@ const AllBook = () => {
         </section>
         <section className="lg:w-10/12  px-10 shadow-2xl rounded-xl">
           <div className="lg:grid grid-cols-4 space-x-5 space-y-10">
-            {mapBooks?.map((book: object) => {
+            {mapBooks?.map((book) => {
               // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
               return <Book book={book}></Book>;
             })}

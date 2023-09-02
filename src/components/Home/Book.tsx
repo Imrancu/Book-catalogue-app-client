@@ -2,9 +2,22 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 // import "../../App.css";
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-const Book = ({ book }) => {
+
+interface Book {
+  Title: string;
+  Img_URL: string;
+  Author: string;
+ Genre: string;
+ Publication_Date: string;
+   _id: string
+ }
+ interface BookProps {
+   book: Book;
+ }
+
+const Book = (props:BookProps) => {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unused-vars
-  const { Title, Img_URL, Author, Genre, Publication_Date, _id } = book;
+  const { Title, Img_URL, Author, Genre, Publication_Date, _id } =props.book;
 
   const navigate = useNavigate();
 

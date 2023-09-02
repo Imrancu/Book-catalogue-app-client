@@ -5,14 +5,12 @@
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
-import React, { useState } from "react";
-import { AiOutlineDelete } from "react-icons/ai";
+
+import { toast } from "react-hot-toast";
 import {
-  useDeleteBookMutation,
   useDeleteBookWishlistMutation,
   useGetBookWishlistQuery,
 } from "../../redux/features/Book/apiBookSlice";
-import { toast } from "react-hot-toast";
 
 const Wishlist = () => {
   const getBookWishlist = useGetBookWishlistQuery(undefined, {

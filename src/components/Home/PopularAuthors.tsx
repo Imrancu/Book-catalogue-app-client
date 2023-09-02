@@ -1,6 +1,5 @@
 import { AiFillLinkedin } from "react-icons/ai";
-import { CiFacebook, CiTwitter } from "react-icons/ci";
-import { BsTwitter, BsFacebook } from "react-icons/bs";
+import { BsFacebook, BsTwitter } from "react-icons/bs";
 
 const PopularAuthors = () => {
   return (

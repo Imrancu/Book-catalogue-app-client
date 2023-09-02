@@ -1,18 +1,10 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useState } from "react";
 
 import { RxCross2 } from "react-icons/rx";
 
-// import auth from "../../firebase.init";
-import { useNavigate } from "react-router-dom";
-// import { toast } from "react-toastify";
-
 const BookCard = () => {
-  //   const [user, error, loading] = useAuthState(auth);
-  // console.log(user);
-  // let email = user?.email;
-  const navigate = useNavigate();
-  //   const { name, imgURL, price } = product;
-  const [viewDetails, setViewDetails] = useState(false);
+  const [viewDetails] = useState(false);
   const [isButtonVisible, setIsButtonVisible] = useState(false);
   const [isPrice, setIsPrice] = useState(false);
   // const [quantity, setQuantity] = useState(0);

@@ -1,9 +1,8 @@
-import React from "react";
+import BookCatalog from "./BookCatalog";
 import HeroSection from "./HeroSection";
 import LatestNews from "./LatestNews";
 import PopularAuthors from "./PopularAuthors";
 import ReelsBooks from "./ReelsBooks";
-import BookCatalog from "./BookCatalog";
 
 const Home = () => {
   return (

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -22,7 +23,6 @@ const EditBook = () => {
   const {
     register,
     reset,
-    formState: { errors },
     handleSubmit,
   } = useForm<IFormInputs>();
   const [updateBook] = useUpdateBookMutation();

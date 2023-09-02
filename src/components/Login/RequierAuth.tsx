@@ -1,6 +1,11 @@
+import { ReactNode } from "react"; // Import ReactNode
 import { Navigate, useLocation } from "react-router-dom";
 
-const RequireAuth = ({ children }) => {
+interface RequireAuthProps {
+  children: ReactNode; // Specify children prop type as ReactNode
+}
+
+const RequireAuth: React.FC<RequireAuthProps> = ({ children }) => {
   const tokenUser = localStorage.getItem("accessToken");
   const location = useLocation();
 
@@ -9,7 +14,7 @@ const RequireAuth = ({ children }) => {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-  return children;
+  return <>{children}</>; // Wrap children in <></> to make it JSX
 };
 
 export default RequireAuth;

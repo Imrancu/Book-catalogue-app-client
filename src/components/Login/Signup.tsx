@@ -1,11 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React from "react";
-import { useNavigate } from "react-router-dom";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { Toaster, toast } from "react-hot-toast";
 import { useCreateUserMutation } from "../../redux/features/Book/apiBookSlice";
-import { toast } from "react-hot-toast";
-import { Toaster } from "react-hot-toast";
 // import { toast } from "react-toastify";
 
 interface IFormInputs {
@@ -13,11 +11,13 @@ interface IFormInputs {
   email: string;
   password: string;
 }
+interface SignupProps {
+  toggleSignup: boolean;
+  setToggleSignup: (value: boolean) => any;
+}
 
-const Signup = ({ setToggleSignup, toggleSignup }) => {
-  const navigate = useNavigate();
-  const [createUser, { isLoading, isError, isSuccess }] =
-    useCreateUserMutation();
+const Signup = (props: SignupProps) => {
+  const [createUser, { isError, isSuccess }] = useCreateUserMutation();
   const {
     register,
     formState: { errors },
@@ -43,12 +43,12 @@ const Signup = ({ setToggleSignup, toggleSignup }) => {
     toast.error("You are facing error,please login");
     <Toaster></Toaster>;
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-    return setToggleSignup(!toggleSignup);
+    return props.setToggleSignup(!props.toggleSignup);
   }
   if (isSuccess) {
     toast.success("successfully signup,please login");
     <Toaster></Toaster>;
-    setToggleSignup(!toggleSignup);
+    props.setToggleSignup(!props.toggleSignup);
     return;
   }
 
@@ -126,7 +126,7 @@ const Signup = ({ setToggleSignup, toggleSignup }) => {
             I have an account{" "}
             <button
               // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-call
-              onClick={() => setToggleSignup(!toggleSignup)}
+              onClick={() => props.setToggleSignup(!props.toggleSignup)}
               className="text-primary font-bold"
             >
               Login!

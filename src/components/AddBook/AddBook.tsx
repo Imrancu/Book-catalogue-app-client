@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useCreateBookMutation } from "../../redux/features/Book/apiBookSlice";

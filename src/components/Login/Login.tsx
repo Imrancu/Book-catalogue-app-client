@@ -1,39 +1,37 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-empty-function */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-misused-promises */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { SubmitHandler, useForm } from "react-hook-form";
-import Signup from "./Signup";
-import { useLoginUserMutation } from "../../redux/features/Book/apiBookSlice";
 import { toast } from "react-hot-toast";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useLoginUserMutation } from "../../redux/features/Book/apiBookSlice";
+import Signup from "./Signup";
 interface IFormInputs {
   email: string;
   password: string;
 }
 
 const Login = () => {
-  const [toggleSignup, setToggleSignup] = useState(false);
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
-  const from = location.state?.from?.pathname || "/";
-  // console.log(from);
-
+  const [toggleSignup, setToggleSignup] = useState<boolean>(false);
+  const location = useLocation();
+  const from = location?.pathname || "/";
   const navigate = useNavigate();
-  const [loginUser, { isLoading, isError, isSuccess }] = useLoginUserMutation();
+  const [loginUser] = useLoginUserMutation();
 
   const onSubmit: SubmitHandler<IFormInputs> = async (data) => {
-    const response = await loginUser(data);
-    if (response.data) {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+    const response: any = await loginUser(data);
+    if (response?.data) {
       const message = await response?.data?.message;
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
       toast.success(message);
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
       const token: string = await response?.data?.data?.accessToken;
       localStorage.setItem("accessToken", token);
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
       return navigate(from, { replace: true });
     } else {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
       toast.error("Please submit your currect Email or password");
       navigate("/login");
     }
@@ -106,7 +104,6 @@ const Login = () => {
               <p className="text-left">
                 Don't have an account?
                 <button
-                  // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-call
                   onClick={() => setToggleSignup(!toggleSignup)}
                   className="text-primary font-bold"
                 >
@@ -119,9 +116,7 @@ const Login = () => {
       )}
       {toggleSignup && (
         <Signup
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
           setToggleSignup={setToggleSignup}
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
           toggleSignup={toggleSignup}
         ></Signup>
       )}

@@ -1,14 +1,14 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 import { BsFillArrowRightCircleFill } from "react-icons/bs";
-import Book from "./Book";
 import { useNavigate } from "react-router-dom";
 import { useGetBooksQuery } from "../../redux/features/Book/apiBookSlice";
+import Book from "./Book";
 
 const BookCatalog = () => {
   const navigate = useNavigate();
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unused-vars
-  const { data, isLoading, error } = useGetBooksQuery(undefined, {
+  const { data, isLoading } = useGetBooksQuery(undefined, {
     refetchOnMountOrArgChange: true,
     pollingInterval: 3000,
   });
@@ -31,7 +31,7 @@ const BookCatalog = () => {
       </h1>
 
       <div className="lg:grid grid-cols-5 space-x-5 space-y-10">
-        {books?.slice(0, 10)?.map((book: object) => {
+        {books?.slice(0, 10)?.map((book) => {
           return <Book book={book}></Book>;
         })}
       </div>

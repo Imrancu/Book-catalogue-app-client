@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { useState } from "react";
 import { BsBook } from "react-icons/bs";
 import { FiHeart } from "react-icons/fi";
 // import "../../App.css";
