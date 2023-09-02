@@ -6,7 +6,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { useState } from "react";
-import { AiOutlineDelete } from "react-icons/ai";
 import {
   useDeleteBookReadingMutation,
   useGetBookReadinglistQuery,
@@ -33,7 +32,7 @@ const ReadingList = () => {
   };
   const [readingBookUpdate] = useReadingBookUpdateMutation();
   const handleUpdateStatus = async (id: string) => {
-    const response = await readingBookUpdate({ id });
+    const response: any = await readingBookUpdate({ id });
     if (response?.data?.success === true) {
       toast.success("Successfully updated ReadingBook");
       window.location.reload();

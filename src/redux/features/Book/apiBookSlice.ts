@@ -4,8 +4,10 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const apiBookAndUserSlice = createApi({
   reducerPath: "api",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000/api/v1" }),
-  // refetchOnMountOrArgChange: 30,
+  baseQuery: fetchBaseQuery({
+    baseUrl:
+      "https://simple-book-catalog-application-5-server.vercel.app/api/v1",
+  }),
   endpoints: (builder) => ({
     createBook: builder.mutation({
       query: (bookData) => ({

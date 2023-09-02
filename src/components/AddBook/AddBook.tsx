@@ -12,20 +12,14 @@ interface IFormInputs {
   email: string;
 }
 const AddBook = () => {
-  const {
-    register,
-    reset,
-    formState: { errors },
-    handleSubmit,
-  } = useForm<IFormInputs>();
-  const [createBook, { isLoading, isError, isSuccess }] =
-    useCreateBookMutation();
+  const { register, reset, handleSubmit } = useForm<IFormInputs>();
+  const [createBook] = useCreateBookMutation();
 
   // eslint-disable-next-line @typescript-eslint/require-await
   const onSubmit: SubmitHandler<IFormInputs> = async (data) => {
     const token = localStorage.getItem("accessToken");
     if (token) {
-      const respons = await createBook(data);
+      const respons: any = await createBook(data);
       if (respons?.data?.success === true) {
         toast.success("successfully added your book");
         reset();

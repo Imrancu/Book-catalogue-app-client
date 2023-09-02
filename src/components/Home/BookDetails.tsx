@@ -5,7 +5,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import { Await, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   useCreateBookReadinglistMutation,
   useCreateBookReviewMutation,
@@ -16,10 +16,10 @@ import {
 } from "../../redux/features/Book/apiBookSlice";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
-import BookReview from "./BookReview";
-import { useEffect, useMemo, useState } from "react";
-import { useDispatch } from "react-redux";
-import { BsBook, BsBookFill, BsHeartFill, BsSuitHeart } from "react-icons/bs";
+
+import { useEffect } from "react";
+
+import { BsBook, BsSuitHeart } from "react-icons/bs";
 interface IFormInputs {
   comment: string;
   rating: number;
@@ -51,18 +51,12 @@ const BookDetails = () => {
 
   const reviewData = allReview?.data?.data?.result;
 
-  const [createBookReview, { isLoading, isError, isSuccess }] =
-    useCreateBookReviewMutation();
+  const [createBookReview] = useCreateBookReviewMutation();
 
-  const {
-    register,
-    reset,
-    formState: { errors },
-    handleSubmit,
-  } = useForm<IFormInputs>();
+  const { register, reset, handleSubmit } = useForm<IFormInputs>();
 
   const onSubmit: SubmitHandler<IFormInputs> = async (data2: IFormInputs) => {
-    const token = localStorage.getItem("accessToken");
+    const token: string | null = localStorage.getItem("accessToken");
     if (!token) {
       navigate("/login");
       return toast.success("Please Login,You Are Not User");
@@ -87,7 +81,7 @@ const BookDetails = () => {
       toast.error("You are not Right for deleting this book");
       return navigate("/login");
     } else if (token) {
-      const respons = await deleteBook(bookId);
+      const respons: any = await deleteBook(bookId);
       if (respons?.data?.success === true) {
         navigate("/");
       }
@@ -108,8 +102,8 @@ const BookDetails = () => {
       toast.error("Please login");
       return navigate("/login");
     } else {
-      const response = await createBookWishlist(data);
-      console.log(response);
+      const response: any = await createBookWishlist(data);
+      // console.log(response);
       if (response?.data?.success === true) {
         toast.success("Added The Book in The Wishlist");
         navigate("/wishlist");
@@ -125,8 +119,8 @@ const BookDetails = () => {
       toast.error("Please login");
       return navigate("/login");
     } else {
-      const response = await createBookReadinglist(data);
-      console.log(response);
+      const response: any = await createBookReadinglist(data);
+
       if (response?.data?.success === true) {
         toast.success("Added The Book in The Readinglist");
         navigate("/readinglist");

@@ -3,22 +3,10 @@
     {
       "Title": "Book 1 Title",
       "Img_URL": "http://exprostudio.com/html/book_library/images/books/img-01.jpg",
-      "Author": "Douglas Adams",
       "Author": "Author 1",
       "Genre": "Fantasy",
       "Publication_Date": "2022-01-15",
-      "Reviews": [
-        {
-          "user": "User1",
-          "rating": 5,
-          "comment": "Excellent book!"
-        },
-        {
-          "user": "User2",
-          "rating": 4,
-          "comment": "Enjoyable read."
-        }
-      ]
+      "Email": "naima@gmail.com"
     },
     {
       "Title": "Book 2 Title",
@@ -26,18 +14,7 @@
       "Author": "Author 2",
       "Genre": "Mystery",
       "Publication_Date": "2021-11-30",
-      "Reviews": [
-        {
-          "user": "User1",
-          "rating": 5,
-          "comment": "Excellent book!"
-        },
-        {
-          "user": "User2",
-          "rating": 4,
-          "comment": "Enjoyable read."
-        }
-      ]
+      "Email": "naima@gmail.com"
     },
     {
       "Title": "Book 3 Title",
@@ -45,18 +22,7 @@
       "Author": "Author 3",
       "Genre": "Science Fiction",
       "Publication_Date": "2023-03-22",
-      "Reviews": [
-        {
-          "user": "User1",
-          "rating": 5,
-          "comment": "Excellent book!"
-        },
-        {
-          "user": "User2",
-          "rating": 4,
-          "comment": "Enjoyable read."
-        }
-      ]
+      "Email": "naima@gmail.com"
     },
     {
       "Title": "Book 4 Title",
@@ -64,18 +30,7 @@
       "Author": "Author 4",
       "Genre": "Romance",
       "Publication_Date": "2020-07-10",
-      "Reviews": [
-        {
-          "user": "User1",
-          "rating": 5,
-          "comment": "Excellent book!"
-        },
-        {
-          "user": "User2",
-          "rating": 4,
-          "comment": "Enjoyable read."
-        }
-      ]
+      "Email": "naima@gmail.com"
     },
     {
       "Title": "Book 5 Title",
@@ -83,18 +38,7 @@
       "Author": "Author 5",
       "Genre": "Thriller",
       "Publication_Date": "2023-05-05",
-      "Reviews": [
-        {
-          "user": "User1",
-          "rating": 5,
-          "comment": "Excellent book!"
-        },
-        {
-          "user": "User2",
-          "rating": 4,
-          "comment": "Enjoyable read."
-        }
-      ]
+      "Email": "naima@gmail.com"
     },
     {
       "Title": "Book 6 Title",
@@ -102,18 +46,7 @@
       "Author": "Author 6",
       "Genre": "Historical Fiction",
       "Publication_Date": "2022-09-18",
-      "Reviews": [
-        {
-          "user": "User1",
-          "rating": 5,
-          "comment": "Excellent book!"
-        },
-        {
-          "user": "User2",
-          "rating": 4,
-          "comment": "Enjoyable read."
-        }
-      ]
+      "Email": "naima@gmail.com"
     },
     {
       "Title": "Book 7 Title",
@@ -121,18 +54,7 @@
       "Author": "Author 7",
       "Genre": "Dystopian",
       "Publication_Date": "2021-03-05",
-      "Reviews": [
-        {
-          "user": "User1",
-          "rating": 5,
-          "comment": "Excellent book!"
-        },
-        {
-          "user": "User2",
-          "rating": 4,
-          "comment": "Enjoyable read."
-        }
-      ]
+      "Email": "naima@gmail.com"
     },
     {
       "Title": "Book 8 Title",
@@ -140,18 +62,7 @@
       "Author": "Author 8",
       "Genre": "Humor",
       "Publication_Date": "2023-01-07",
-      "Reviews": [
-        {
-          "user": "User1",
-          "rating": 5,
-          "comment": "Excellent book!"
-        },
-        {
-          "user": "User2",
-          "rating": 4,
-          "comment": "Enjoyable read."
-        }
-      ]
+      "Email": "naima@gmail.com"
     },
     {
       "Title": "Book 9 Title",
@@ -159,18 +70,7 @@
       "Author": "Author 9",
       "Genre": "Biography",
       "Publication_Date": "2022-11-22",
-      "Reviews": [
-        {
-          "user": "User1",
-          "rating": 5,
-          "comment": "Excellent book!"
-        },
-        {
-          "user": "User2",
-          "rating": 4,
-          "comment": "Enjoyable read."
-        }
-      ]
+      "Email": "naima@gmail.com"
     },
     {
       "Title": "Book 10 Title",
@@ -178,18 +78,7 @@
       "Author": "Author 10",
       "Genre": "Young Adult",
       "Publication_Date": "2023-06-12",
-      "Reviews": [
-        {
-          "user": "User1",
-          "rating": 5,
-          "comment": "Excellent book!"
-        },
-        {
-          "user": "User2",
-          "rating": 4,
-          "comment": "Enjoyable read."
-        }
-      ]
+      "Email": "naima@gmail.com"
     }
   ]
 }

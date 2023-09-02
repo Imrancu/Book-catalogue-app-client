@@ -39,9 +39,7 @@ const EditBook = () => {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-assignment
       const bookId = id;
       const bookData = data;
-      const respons = await updateBook({ bookId, bookData });
-      console.log(id);
-
+      const respons: any = await updateBook({ bookId, bookData });
       if (respons?.data?.success === true) {
         toast.success("Updated your book");
         navigate("/");

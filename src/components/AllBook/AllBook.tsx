@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
@@ -51,8 +52,8 @@ const AllBook = () => {
     const query = e?.target?.value?.toLowerCase();
     setSearchQuery(query);
 
-    const filteredResults = books?.filter(
-      (book) =>
+    const filteredResults: any = books?.filter(
+      (book: any) =>
         book?.Title?.toLowerCase()?.includes(query) ||
         book?.Author?.toLowerCase()?.includes(query) ||
         book?.Genre?.toLowerCase()?.includes(query)
@@ -79,10 +80,10 @@ const AllBook = () => {
   const uniqueGenre = new Set();
   const uniqueDate = new Set();
 
-  books2?.map((object) => {
+  books2?.map((object: any) => {
     uniqueGenre?.add(object?.Genre);
   });
-  books2?.map((object) => {
+  books2?.map((object: any) => {
     uniqueDate?.add(object?.Publication_Date);
   });
 
@@ -120,7 +121,7 @@ const AllBook = () => {
               Genre
             </button>
             <ul className="ml-4 cursor-pointer font-semibold">
-              {uniqueGenreArray.map((g) => {
+              {uniqueGenreArray.map((g: any) => {
                 return (
                   <li onClick={() => handleGenreAndDate(g, "Genre")}>{g}</li>
                 );
@@ -131,7 +132,7 @@ const AllBook = () => {
               Publication Date
             </button>
             <ul className="ml-4 font-semibold cursor-pointer ">
-              {uniqueDateArray.map((g) => {
+              {uniqueDateArray.map((g: any) => {
                 return (
                   <li onClick={() => handleGenreAndDate(g, "Publication_Date")}>
                     {g}

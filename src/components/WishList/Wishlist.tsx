@@ -27,7 +27,7 @@ const Wishlist = () => {
   const [deleteBookWishlist] = useDeleteBookWishlistMutation();
 
   const handleDelete = async (id: string) => {
-    const response = await deleteBookWishlist(id);
+    const response: any = await deleteBookWishlist(id);
     if (response) {
       toast.success("Successfully delete book");
       window.location.reload();
