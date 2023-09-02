@@ -8,7 +8,7 @@
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useLoginUserMutation } from "../../redux/features/Book/apiBookSlice";
 import Signup from "./Signup";
 interface IFormInputs {
@@ -18,8 +18,8 @@ interface IFormInputs {
 
 const Login = () => {
   const [toggleSignup, setToggleSignup] = useState<boolean>(false);
-  const location = useLocation();
-  const from = location?.pathname || "/";
+  // const location = useLocation();
+  // const from = location?.pathname || "/";
   const navigate = useNavigate();
   const [loginUser] = useLoginUserMutation();
 
@@ -30,7 +30,7 @@ const Login = () => {
       toast.success(message);
       const token: string = await response?.data?.data?.accessToken;
       localStorage.setItem("accessToken", token);
-      return navigate(from, { replace: true });
+      return navigate("/");
     } else {
       toast.error("Please submit your currect Email or password");
       navigate("/login");
