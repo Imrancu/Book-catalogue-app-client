@@ -16,7 +16,7 @@ const AddBook = () => {
   const { register, reset, handleSubmit } = useForm<IFormInputs>();
   const [createBook] = useCreateBookMutation();
 
-  // eslint-disable-next-line @typescript-eslint/require-await
+  // eslint-disable-next-line @typescript-eslint/require-awa
   const onSubmit: SubmitHandler<IFormInputs> = async (data) => {
     const token = localStorage.getItem("accessToken");
     if (token) {
