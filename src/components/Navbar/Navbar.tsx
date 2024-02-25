@@ -82,7 +82,7 @@ const Navbar = () => {
                   : " font-semibold hover:text-primary hover:border-b-2 hover:border-primary"
               }
             >
-              <Link to="/" key={pathname}>
+              <Link to="/contact" key={pathname}>
                 CONTACT
               </Link>
             </li>

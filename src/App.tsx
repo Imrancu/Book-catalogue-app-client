@@ -16,6 +16,7 @@ import EditBook from "./components/AddBook/EditBook";
 import RequireAuth from "./components/Login/RequierAuth";
 import ReadingList from "./components/ReadingLis/ReadingList";
 import Wishlist from "./components/WishList/Wishlist";
+import Contact from "./components/Contact/Contact";
 // ..
 AOS.init();
 function App() {
@@ -38,6 +39,7 @@ function App() {
         ></Route>
         <Route path="/all-book" element={<AllBook />}></Route>
         <Route path="/wishlist" element={<Wishlist />}></Route>
+        <Route path="/contact" element={<Contact />}></Route>
         <Route path="/readinglist" element={<ReadingList />}></Route>
         <Route path="/single-book/:id" element={<BookDetails />}></Route>
         <Route

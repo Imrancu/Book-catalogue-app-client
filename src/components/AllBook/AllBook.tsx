@@ -71,9 +71,9 @@ const AllBook = () => {
 
   if (isLoading) {
     return (
-      <h1 className="text-center mt-20 text-3xl text-error font-serif font-bold">
-        loading.....
-      </h1>
+      <div className="flex justify-center my-20 items-center">
+      <span className="loading loading-infinity w-16   text-primary loading-xl"></span>
+    </div>
     );
   }
 
