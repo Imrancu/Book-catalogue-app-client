@@ -30,7 +30,7 @@ const BookCatalog = () => {
         Books Catelog
       </h1>
 
-      <div className="lg:grid grid-cols-5 space-x-5 space-y-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
         {books?.slice(0, 10)?.map((book) => {
           return <Book book={book}></Book>;
         })}

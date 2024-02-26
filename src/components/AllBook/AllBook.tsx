@@ -143,7 +143,7 @@ const AllBook = () => {
           </div>
         </section>
         <section className="lg:w-10/12  px-10 shadow-2xl rounded-xl">
-          <div className="lg:grid grid-cols-4 space-x-5 space-y-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2">
             {mapBooks?.map((book) => {
               // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
               return <Book book={book}></Book>;
