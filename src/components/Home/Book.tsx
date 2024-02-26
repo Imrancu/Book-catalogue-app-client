@@ -50,7 +50,7 @@ const Book = (props:BookProps) => {
         <button
           // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
           onClick={() => navigate(`/single-book/${_id}`)}
-          className="btn mt-10 bg-[#77B748] text-white hover:text-black rounded-full"
+          className="btn btn-primary btn-sm mt-5  text-white  rounded-full"
         >
           Book Details
         </button>
