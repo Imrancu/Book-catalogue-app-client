@@ -5,6 +5,7 @@ import { FiHeart } from "react-icons/fi";
 // import "../../App.css";
 import { RxCross2 } from "react-icons/rx";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useGetBookReadinglistQuery, useGetBookWishlistQuery } from "../../redux/features/Book/apiBookSlice";
 
 const Navbar = () => {
   const { pathname } = useLocation();
@@ -18,6 +19,18 @@ const Navbar = () => {
     navigate("/login");
     return token;
   };
+  const getBookWishlist = useGetBookWishlistQuery(undefined, {
+    refetchOnMountOrArgChange: true,
+    pollingInterval: 3000,
+  });
+  const bookData = getBookWishlist?.data?.data?.map((book: any) => book);
+  const bookData2 = bookData?.map((book2: any) => book2);
+  const getBookReadinglist = useGetBookReadinglistQuery(undefined, {
+    refetchOnMountOrArgChange: true,
+    pollingInterval: 3000,
+  });
+  const bookData1 = getBookReadinglist?.data?.data?.map((book: any) => book);
+  const bookData3 = bookData1?.map((book2: any) => book2);
 
   return (
     <header className="relative">
@@ -96,10 +109,10 @@ const Navbar = () => {
             >
               <p className="lg:pt-2 mx-2 relative ">
                 <small className="hidden lg:block px-1 py-1 absolute top-[3px] left-7 text-[8px] text-white bg-primary rounded-full">
-                  80
+               0 { bookData3 ?.length}
                 </small>
                 <small className="block lg:hidden px-1 py-1 absolute lg:top-[3px] lg:left-7 left-2 lg:text-[8px] text-[5px] bottom-2 lg:bottom-0 text-white bg-primary rounded-full">
-                  80
+               0 { bookData3 ?.length}
                 </small>
                 <BsBook className="lg:ml-3  text-primary lg:text-2xl "></BsBook>
                 <p className="text-[12px] hidden lg:block my-[-4px]">
@@ -113,10 +126,10 @@ const Navbar = () => {
             >
               <p className="lg:pt-2 lg:mx-4 mx-2 relative ">
                 <small className="hidden lg:block px-1 py-1 absolute top-[3px] left-7 text-[8px] text-white bg-primary rounded-full">
-                  80
+                0{bookData2?.length}
                 </small>
                 <small className="block lg:hidden px-1 py-1 absolute lg:top-[3px] lg:left-7 left-2 lg:text-[8px] text-[5px] bottom-2 lg:bottom-0 text-white bg-primary rounded-full">
-                  80
+               0 {bookData2?.length}
                 </small>
                 <FiHeart className="lg:ml-3  text-primary lg:text-2xl "></FiHeart>
                 <p className="text-[12px] hidden lg:block my-[-4px]">
